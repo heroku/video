@@ -1,7 +1,27 @@
 require 'sinatra'
+require './s3'
 
 class App < Sinatra::Application
   get '/' do
-    'hello'
+    @videos = Video.list
+    erb :index
   end
 end
+
+__END__
+
+@@ layout
+<html>
+<head><title>heroku videos</title></head>
+<body>
+<%= yield %>
+</body>
+</html>
+
+@@ index
+<ul>
+  <% @videos.each do |video| %>
+    <li><a href="<%= video.url %>"><%= video.name %></a></li>
+  <% end %>
+</ul>
+
