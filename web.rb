@@ -2,6 +2,10 @@ require 'sinatra'
 require './s3'
 
 class App < Sinatra::Application
+  before do
+    halt(403) unless request.env['bouncer.email']
+  end
+
   get '/' do
     @videos = Video.list
     erb :index
