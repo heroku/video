@@ -4,7 +4,7 @@ CONN = Fog::Storage.new(provider: "AWS", aws_access_key_id: ENV.fetch("AWS_ACCES
 class Video < Struct.new(:name, :url)
   def self.list
     s3 = CONN.directories.get( ENV.fetch("BUCKET") )
-    s3.files.map {|f| new(f.key, f.url( Time.now + 600 ))}.sort_by(&:name).reverse
+    s3.files.map {|f| new(f.key, f.url( Time.now + 7200 ))}.sort_by(&:name).reverse
   end
 end
 
