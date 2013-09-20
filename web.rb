@@ -16,7 +16,10 @@ __END__
 
 @@ layout
 <html>
-<head><title>heroku videos</title></head>
+<head>
+  <title>heroku videos</title>
+  <style>body { font-family: monospace; }</style>
+</head>
 <body>
 <%= yield %>
 </body>
